@@ -36,6 +36,20 @@ public class Children implements Serializable {
     public boolean empty() {return length == 0;}
 
     public boolean full() {return length == list.length;}
+
+    public void orderByAge() {
+        Kid tmp = null;
+
+        for(int i = 0; i < length - 1; ++i) {
+            for(int j = i + 1; j < length; ++j) {
+                if(list[i].getAge() > list[j].getAge()) {
+                    tmp = list[i];
+                    list[i] = list[j];
+                    list[j] = tmp;
+                }
+            }
+        }
+    }
     //List manipulation----------------------------------------------------------------------------------------------------------
     private void insert(Kid x) throws AddException {
         int index = findInsertIndex(x, 0, length - 1);
@@ -163,7 +177,7 @@ public class Children implements Serializable {
     //---------------------------------------------------------------------------------------------------------------------------
 }
 
-class ChildrenDemo {
+/*class ChildrenDemo {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -295,4 +309,4 @@ class ChildrenDemo {
         //prova3();
         prova4();
     }
-}
+}*/

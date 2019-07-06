@@ -25,6 +25,7 @@ public class Kid implements Serializable, Comparable<Kid> {
         this.surname = surname;
         this.age = age;
     }
+
     //Set() && Get() methods----------------------------------------------------------------------------------------------------------------------------------------------------------------
     public String getName() {return name;}
 

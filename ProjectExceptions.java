@@ -27,3 +27,7 @@ class ListException extends Exception {
 class AddException extends Exception {
     public AddException(String str) {super(str);}
 }
+
+class MannusSeasonException extends Exception {
+    public MannusSeasonException(String str) {super(str);}
+}
