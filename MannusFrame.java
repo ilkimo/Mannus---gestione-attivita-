@@ -14,7 +14,15 @@ public class MannusFrame extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(new JLabel("prova"));
-        MainWindow editor = new WindowIscritti(this, 25, 250, getGraphics());
+        MainWindow editor = new WindowIscritti(getGraphics()) {
+            public int myGetWidth() {return (int)(getSize().getWidth() - (2d * (double)myGetX()));}
+
+            public int myGetHeight() {return (int)(getSize().getHeight() - ((double)myGetY() + (double)myGetX()));}
+
+            public int myGetX() {return (int)(getSize().getWidth() / 48d);}
+
+            public int myGetY() {return (int)(getSize().getHeight() / 4d);}
+        };
         add(editor);
     }
     //---------------------------------------------------------------------------------------------------------------------

@@ -31,3 +31,11 @@ class AddException extends Exception {
 class MannusSeasonException extends Exception {
     public MannusSeasonException(String str) {super(str);}
 }
+
+class ActivityException extends Exception {
+    public ActivityException(String str) {super(str);}
+}
+
+class TimeTableException extends Exception {
+    public TimeTableException(String str) {super(str);}
+}

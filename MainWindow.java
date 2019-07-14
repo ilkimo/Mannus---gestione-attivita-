@@ -6,27 +6,31 @@ import java.awt.Component;
 //PopupMenu
 //
 
-public class MainWindow extends JComponent {
-    private int upLeftCornerX, upLeftCornerY, width, height;
+public abstract class MainWindow extends JComponent {
     private Children kids;
     private Graphics g;
-    Kidsgrid grid;
-    MannusFrame parent;
+    KidsGrid grid;
 
-    public MainWindow(MannusFrame parent, int upLeftCornerX, int upLeftCornerY, Graphics g) {
-        this.upLeftCornerX = upLeftCornerX;
-        this.upLeftCornerY = upLeftCornerY;
-        width = MannusFrame.WIDTH - (2 * upLeftCornerX);
-        height = MannusFrame.HEIGHT - (upLeftCornerY + upLeftCornerX * 2);
+    public MainWindow(Graphics g) {
         kids = null;
         this.g = g;
-        this.parent = parent;
-        grid = new KidsGrid(parent, upLeftCornerX, upLeftCornerY, width, height);
+        grid = new KidsGrid(this) {
+            @Override
+            public void paint(Graphics g) {
+                g.drawRect(myGetX(), myGetY(), myGetWidth(), myGetHeight());
+            }
+        };
         add(grid);
     }
     //---------------------------------------------------------------------------------------------------------------------------------
+    public abstract int myGetWidth();
 
+    public abstract int myGetHeight();
 
+    public abstract int myGetX();
+
+    public abstract int myGetY();
+    //---------------------------------------------------------------------------------------------------------------------------------
     @Override
     public void paint(Graphics g) {
         Component[] components = getComponents();
@@ -38,20 +42,20 @@ public class MainWindow extends JComponent {
     //---------------------------------------------------------------------------------------------------------------------------------
 }
 
-class WindowIscritti extends MainWindow {
-    public WindowIscritti(MannusFrame parent, int upLeftCornerX, int upLeftCornerY, Graphics g) {
-        super(parent, upLeftCornerX, upLeftCornerY, g);
+abstract class WindowIscritti extends MainWindow {
+    public WindowIscritti(Graphics g) {
+        super(g);
     }
 }
 
-class GestioneAttivita extends MainWindow {
-    public GestioneAttivita(MannusFrame parent, int upLeftCornerX, int upLeftCornerY, Graphics g) {
-        super(parent, upLeftCornerX, upLeftCornerY, g);
+abstract class GestioneAttivita extends MainWindow {
+    public GestioneAttivita(Graphics g) {
+        super(g);
     }
 }
 
-class CalendarioTurni extends MainWindow {
-    public CalendarioTurni(MannusFrame parent, int upLeftCornerX, int upLeftCornerY, Graphics g) {
-        super(parent, upLeftCornerX, upLeftCornerY, g);
+abstract class CalendarioTurni extends MainWindow {
+    public CalendarioTurni(Graphics g) {
+        super(g);
     }
 }

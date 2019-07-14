@@ -26,6 +26,16 @@ public class Kid implements Serializable, Comparable<Kid> {
         this.age = age;
     }
 
+    public Kid(String name, String surname) throws NameException, SurnameException {
+        if(name.length() == 0)    {throw new NameException("Errore, nome non inserito");}
+        if(surname.length() == 0) {throw new SurnameException("Errore, cognome non inserito");}
+        if(!validName(name))      {throw new NameException("Errore, il nome puo' contenere solo lettere e spazi \ne deve essere di lunghezza compresa fra 1 e 20");}
+        if(!validName(surname))   {throw new SurnameException("Errore, il cognome puo' contenere solo lettere e spazi \ne deve essere di lunghezza compresa fra 1 e 20");}
+
+        this.name = name;
+        this.surname = surname;
+    }
+
     //Set() && Get() methods----------------------------------------------------------------------------------------------------------------------------------------------------------------
     public String getName() {return name;}
 
