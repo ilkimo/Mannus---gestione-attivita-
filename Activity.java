@@ -6,6 +6,10 @@ import java.io.Serializable;
   * Class invariant: each activity name has to be unique, the time for the activity has to be a multiple of 15mnts
   */
 public class Activity implements Serializable {
+    public static int standard_min_groups = 4;
+    public static int standard_max_groups = 15;
+    public static int standard_time_activity = 45;
+
     private String name;
     /**
      * Minimum number of kids in each group
@@ -23,9 +27,16 @@ public class Activity implements Serializable {
      * Time (expressed in minutes) for each group
      */
     private int timeActivity;
+
+    private TimeTable calendar;
     //Constructors------------------------------------------------------------------------------------------------------------------
     public Activity(String name) {
         this.name = name;
+        calendar = new TimeTable();
+        this.minGroups = standard_min_groups;
+        this.maxGroups = standard_max_groups;
+        this.timeActivity = standard_time_activity;
+        this.nTimes = 0;
     }
     //set() & get()-----------------------------------------------------------------------------------------------------------------
     public String getName() {return name;}
@@ -55,13 +66,33 @@ public class Activity implements Serializable {
         this.timeActivity = minutes;
     }
     //Methods-----------------------------------------------------------------------------------------------------------------------
-    @Override
-    public boolean equals(Object other) {
-        return (other instanceof Activity && name.equalsIgnoreCase(((Activity)other).getName()));
+    public boolean addSession(int day, Time beginning_time) throws TimeTableException {
+        boolean done = false;
+
+        try {
+            if(calendar.isFree(day, beginning_time.getTime(), beginning_time.getTime() + timeActivity)) {
+                ++nTimes;
+                calendar.setActivity("T" + nTimes, day, beginning_time.getTime(), beginning_time.getTime() + timeActivity);
+
+                done = true;
+            }
+        } catch(TimeTableException e) {throw e;}
+        return done;
+    }
+
+    public boolean removeSession(int day, Time beginning_time) { //make me void
+        --nTimes;
+        //finsh me
+        return false;
     }
     //Utility-----------------------------------------------------------------------------------------------------------------------
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof Activity && name.equalsIgnoreCase(((Activity)other).getName()));
     }
     //------------------------------------------------------------------------------------------------------------------------------
 }

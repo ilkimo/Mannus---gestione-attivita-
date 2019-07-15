@@ -116,7 +116,7 @@ public class ActivityList implements Serializable {
 
 
 
-class ActivityListDemo {
+/*class ActivityListDemo {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -183,4 +183,4 @@ class ActivityListDemo {
         System.out.println(ANSI_GREEN + "12: length = " + list.getLength() + " " + list.toString() + ANSI_RESET);
         pause();
     }
-}
+}*/

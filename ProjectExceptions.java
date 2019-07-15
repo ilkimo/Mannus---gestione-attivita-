@@ -39,3 +39,7 @@ class ActivityException extends Exception {
 class TimeTableException extends Exception {
     public TimeTableException(String str) {super(str);}
 }
+
+class TimeException extends Exception {
+    public TimeException(String str) {super(str);}
+}

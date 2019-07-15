@@ -21,6 +21,16 @@ public class TimeTable implements Serializable {
         }
     }
     //Methods--------------------------------------------------------------------------------------------------------------------
+    public int getBlock(Time t) throws TimeTableException { //wrapper
+        int res = 0;
+
+        try {
+            res = getBlock(t.getTime());
+        } catch(TimeTableException e) {throw e;}
+
+        return res;
+    }
+
     public int getBlock(int mnt) throws TimeTableException {
         if(mnt < 0 || mnt > minutes_per_day)
             throw new TimeTableException("Eccezione: orario inserito non valido --> " + mnt + " minuti");
@@ -72,13 +82,13 @@ public class TimeTable implements Serializable {
         } catch(TimeTableException e) {throw e;}
     }
 
-    public removeActivity(int day, int from_mnt, int to_mnt) throws TimeTableException {
+    public void removeActivity(int day, int from_mnt, int to_mnt) throws TimeTableException {
         try {
             setActivity("n", day, from_mnt, to_mnt);
         } catch(TimeTableException e) {throw e;}
     }
 
-    public removeActivity(String flag) {
+    public void removeActivity(String flag) {
         for(int i = 0; i < 7 && table != null; ++i) {
             for(int j = 0; j < nBlocks && table[i] != null && j < table[i].length; ++j) {
                 if(table[i][j].equalsIgnoreCase(flag))

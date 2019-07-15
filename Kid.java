@@ -12,8 +12,9 @@ import java.io.Serializable;
 public class Kid implements Serializable, Comparable<Kid> {
     private String name, surname;
     private int age;
-    private String[] activities_submitted, permissions, allergy; //if ever used, implement check in method kid.equals(Kid other)
-
+    private TimeTable calendar;
+    //private String[] activities_submitted, permissions, allergy; //if ever used, implement check in method kid.equals(Kid other)
+    //Constructors--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public Kid(String name, String surname, int age) throws AgeException, NameException, SurnameException {
         if(age < 0)               {throw new AgeException("L'eta' dell'animato non puo' essere negativa");}
         if(name.length() == 0)    {throw new NameException("Errore, nome non inserito");}
@@ -24,6 +25,7 @@ public class Kid implements Serializable, Comparable<Kid> {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        calendar = new TimeTable();
     }
 
     public Kid(String name, String surname) throws NameException, SurnameException {
@@ -34,6 +36,7 @@ public class Kid implements Serializable, Comparable<Kid> {
 
         this.name = name;
         this.surname = surname;
+        calendar = new TimeTable();
     }
 
     //Set() && Get() methods----------------------------------------------------------------------------------------------------------------------------------------------------------------
