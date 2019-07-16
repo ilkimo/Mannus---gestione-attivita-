@@ -97,8 +97,9 @@ public class ActivityList implements Serializable {
     public String toString() {
         String res = "";
         GenericNode<Activity> tmp = first;
-
+        System.out.print("1!");
         while(tmp != null) {
+            System.out.print("2!");
             res += "<";
             res += tmp.getElem().toString();
             tmp = tmp.getNext();

@@ -35,11 +35,20 @@ class MainDemo {
         t.nextLine();
     }
     //---------------------------------------------------------------------------------------------------------------------------------
-    public static void test001() {
-        
+    public static void test001() throws Exception {
+        MannusSeason estate2019 = new MannusSeason(2019);
+
+        try {
+            estate2019.addWeek(new Week("2019/07/15"));
+            System.out.println("ecco " + estate2019.toString());
+        } catch(Exception e) {throw e;}
+
+        System.out.println("End test, no errors");
     }
     //---------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-        test001();
+        try {
+            test001();
+        } catch(Exception e) {System.out.println("Exception: " + e.getMessage() + e.getStackTrace());}
     }
 }

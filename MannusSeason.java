@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Class invariants:
  *  1) nWeeks always shows how many weeks there are in [] weekList
  */
-public abstract class MannusSeason implements Serializable { //istances of this class could be attributes of a larger class "MannusClub"
+public class MannusSeason implements Serializable { //istances of this class could be attributes of a larger class "MannusClub"
     private int year, nWeeks;
     /**
      * Holds instances of past/present/future weeks saved so far

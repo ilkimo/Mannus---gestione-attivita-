@@ -87,6 +87,7 @@ public class Activity implements Serializable {
         }
     }
     //Utility-----------------------------------------------------------------------------------------------------------------------
+    @Override
     public String toString() {
         return name;
     }
