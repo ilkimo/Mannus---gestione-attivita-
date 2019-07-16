@@ -31,6 +31,19 @@ public class TimeTable implements Serializable {
         return res;
     }
 
+    public boolean has_activity(String flag) {
+        boolean found = false;
+
+        for(int i = 0 ; table != null && i < table.length && !found; ++i) {
+            for(int j = 0; table[i] != null && j < table[i].length && !found; ++j) {
+                if(table[i][j].equalsIgnoreCase(flag))
+                    found = true;
+            }
+        }
+
+        return found;
+    }
+
     public int getBlock(int mnt) throws TimeTableException {
         if(mnt < 0 || mnt > minutes_per_day)
             throw new TimeTableException("Eccezione: orario inserito non valido --> " + mnt + " minuti");
@@ -76,7 +89,7 @@ public class TimeTable implements Serializable {
         try {
             endBlock = getBlock(to_mnt);
 
-            for(int i = getBlock(from_mnt); i < endBlock; ++i) {
+            for(int i = getBlock(from_mnt); i <= endBlock; ++i) { //may be < endBlock
                 table[day][i] = flag;
             }
         } catch(TimeTableException e) {throw e;}
@@ -109,8 +122,9 @@ public class TimeTable implements Serializable {
         } catch(TimeTableException e) {throw e;}
 
 
-        return done; //cancel me
+        return done;
     }
+
     //Utility--------------------------------------------------------------------------------------------------------------------
     public static String getDay(int tableLine) {
         String str = "";

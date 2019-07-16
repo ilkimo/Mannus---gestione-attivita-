@@ -80,10 +80,11 @@ public class Activity implements Serializable {
         return done;
     }
 
-    public boolean removeSession(int day, Time beginning_time) { //make me void
-        --nTimes;
-        //finsh me
-        return false;
+    public void removeSession(String flag) throws ActivityException {
+        if(calendar.has_activity(flag)) {
+            calendar.removeActivity(flag);
+            --nTimes;
+        }
     }
     //Utility-----------------------------------------------------------------------------------------------------------------------
     public String toString() {
