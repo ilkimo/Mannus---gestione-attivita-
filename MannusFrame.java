@@ -13,7 +13,7 @@ public class MannusFrame extends JFrame {
         super("Mannus club - gestione centro estivo");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(new JLabel("prova"));
+        add(new JLabel("prova")); //sta roba non si vede perche' c'e' l'altra finestra
         MainWindow editor = new WindowIscritti(getGraphics()) {
             public int myGetWidth() {return (int)(getSize().getWidth() - (2d * (double)myGetX()));}
 
