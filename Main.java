@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JLabel; //remove me
 import java.util.Scanner; //only for Test class
 
 /**
@@ -12,9 +13,26 @@ public class Main {
      * Starts the application by opening it's frame
      */
     public static void main(String[] args) {
-        JFrame mainFrame = new MannusFrame();
-        mainFrame.paint(mainFrame.getGraphics());
-        mainFrame.setVisible(true);
+        String binary_path_name = "";
+        try {
+            binary_path_name = DM.application_start();
+            /*
+             * Ora devo capire che anno e', vedere se c'e' un bin di questa stagione e:
+             *  1) se c'e', caricare la stagione corrente
+             *  2) se non c'e', creare una nuova stagione con la data attuale
+             * Successivamente, mostrare la finestra dell'applicazione
+             */
+            JFrame mainFrame = new MannusFrame();
+            mainFrame.paint(mainFrame.getGraphics());
+            mainFrame.setVisible(true);
+        } catch(Error e) {
+            JFrame f = new JFrame("Errore");
+            f.setSize(500, 200);
+            f.setResizable(false);
+            f.add(new JLabel(e.getMessage()));
+            f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+            f.setVisible(true);
+        }
     }
 }
 

@@ -2,13 +2,32 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Scanner; //only for tests
 /**
- * Stands ofr Directory Manager, this class controls the structure of files in wich saved data is stored
+ * Stands for Directory Manager, this class controls the structure of files in wich saved data is stored
  *
  * @author Kim Viberti <vibertikim@yahoo.it>
  * @version 0.0.1
  * @since 2019-07-03
  */
 public class DM {
+    public static String bin_path;
+    /**
+     * Makes sure there is (in path Users/Username/AppData/Roaming) a "Mannus Manager" --> "bin" --> "Syyyy"
+     * (where yyyy is the current year)
+     */
+    public static String application_start() throws Error {
+        String path_name = "C:" + (char)92 + "Users" + (char)92 + System.getProperty("user.name")
+                            + (char)92 + "AppData" + (char)92 + "Roaming" + (char)92 + "Mannus Manager"
+                            + (char)92 + "bin";
+        File f = null;
+
+        try {
+            f = new File(path_name);
+            f.mkdirs();
+
+        } catch(Exception e) {throw new Error("Percorso file binari non raggiungibile, impossibile aprire l'applicazione");}
+
+        return path_name;
+    }
     /**
      * Returns true if the directory is created, else returns false (directory already exists)
      */
