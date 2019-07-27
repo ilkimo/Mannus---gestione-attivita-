@@ -8,6 +8,10 @@ import java.io.Serializable;
  */
 public class MyCalendar extends GregorianCalendar implements Serializable {
     //Static methods--------------------------------------------------------------------------------------------------------------------------
+    /**
+     * Take care, input date has months indexed [1-12], that's the reason of:
+     *   month = Integer.parseInt(arr[1]) - 1;
+     */
     public static MyCalendar getCalendar(String date) throws TimeException {
         int year = 0, month = 0, day = 0;
 

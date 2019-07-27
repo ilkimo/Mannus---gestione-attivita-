@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel; //remove me
-import java.util.Scanner; //only for Test class
+import java.util.Scanner;
 
 /**
  * @author Kim Viberti <vibertikim@yahoo.it>
@@ -9,22 +11,26 @@ import java.util.Scanner; //only for Test class
  */
 
 public class Main {
+    public static void pause() {
+        Scanner t = new Scanner(System.in);
+        System.out.println("...enter to continue...");
+        t.nextLine();
+    }
+
+    public static String get_actual_date() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    	LocalDate localDate = LocalDate.now();
+        String res = dtf.format(localDate);
+    	return res;
+    }
     /**
-     * Starts the application by opening it's frame
+     * Starts the application by creating an instance of AppCore
      */
     public static void main(String[] args) {
-        String binary_path_name = "";
+        AppCore app = null;
         try {
-            binary_path_name = DM.application_start();
-            /*
-             * Ora devo capire che anno e', vedere se c'e' un bin di questa stagione e:
-             *  1) se c'e', caricare la stagione corrente
-             *  2) se non c'e', creare una nuova stagione con la data attuale
-             * Successivamente, mostrare la finestra dell'applicazione
-             */
-            JFrame mainFrame = new MannusFrame();
-            mainFrame.paint(mainFrame.getGraphics());
-            mainFrame.setVisible(true);
+            app = new AppCore(get_actual_date());
+
         } catch(Error e) {
             JFrame f = new JFrame("Errore");
             f.setSize(500, 200);
