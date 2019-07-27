@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Activity implements Serializable {
     public static int standard_min_groups = 4;
     public static int standard_max_groups = 15;
-    public static int standard_time_activity = 45;
+    public static int standard_time_activity = 30;
 
     private String name;
     /**

@@ -3,9 +3,9 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class Box extends JComponent {
-    MainWindow par;
+    MyEditor par;
     //---------------------------------------------------------------------------------------------------------------------------
-    public Box(MainWindow par) {
+    public Box(MyEditor par) {
         this.par = par;
     }
     //---------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ public class Box extends JComponent {
 }
 
 class KidsGrid extends Box {
-    public KidsGrid(MainWindow par) {
+    public KidsGrid(MyEditor par) {
         super(par);
 
         //ora devo aggiungere le varie righe in cui verrano poi inseriti i dati, meglio creare un array di celle di dimensione x

@@ -20,13 +20,12 @@ public class AppCore {
         binary_path_name = DM.application_start();
 
         String[] date_fields = current_date.split("/");
-        date_fields[0] = year;
-        date_fields[1] = month;
-        date_fields[2] = day;
+        year = date_fields[0];
+        month = date_fields[1];
+        day = date_fields[2];
 
         if(new File(binary_path_name + "S" + year).exists()) { //there is data stored in AppData/Raoming...
-            //seasons_list
-            System.out.println("DA FINIRE costruttore AppCore!");
+            throw new Error("DA FINIRE costruttore AppCore! (mandare messaggio a Kim)");
         } else { //there is no stored data for the login season
             seasons_list = new MannusSeason[] {
                                                 new MannusSeason(Integer.parseInt(year)),
@@ -35,7 +34,7 @@ public class AppCore {
             nSeasons = 1;
         }
         // Mostrare la finestra dell'applicazione
-        mainFrame = new MannusFrame();
+        mainFrame = new MannusFrame(this);
         mainFrame.paint(mainFrame.getGraphics());
         mainFrame.setVisible(true);
     }

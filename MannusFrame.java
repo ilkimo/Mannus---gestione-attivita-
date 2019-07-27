@@ -2,19 +2,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Component;
 
 public class MannusFrame extends JFrame {
 
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 900;
 
+    private MyEditor editor;
     //Constructors---------------------------------------------------------------------------------------------------------
-    public MannusFrame() {
+    public MannusFrame(AppCore app) {
         super("Mannus club - gestione centro estivo");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(new JLabel("prova")); //sta roba non si vede perche' c'e' l'altra finestra
-        MainWindow editor = new WindowIscritti(getGraphics()) {
+        editor = new WindowIscritti(getGraphics(), app) {
             public int myGetWidth() {return (int)(getSize().getWidth() - (2d * (double)myGetX()));}
 
             public int myGetHeight() {return (int)(getSize().getHeight() - ((double)myGetY() + (double)myGetX()));}
@@ -29,6 +31,7 @@ public class MannusFrame extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         System.out.println(getSize().getWidth() + ", " + getSize().getHeight());
     }
     //---------------------------------------------------------------------------------------------------------------------
