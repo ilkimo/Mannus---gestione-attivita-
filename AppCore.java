@@ -6,6 +6,7 @@ import java.io.File;
  * @since 2019/07/27
  * Class invariants:
  *   1) nSeasons always reflects number of items in season_list[]
+ *   2) in "bin" directory files are named "S2019", "S2020"... name stands for: Season yyyy
  */
 public class AppCore {
     public String current_date; //format "yyyy/mm/dd": months indexed [1-12] (July is 7...)
@@ -24,7 +25,7 @@ public class AppCore {
         month = date_fields[1];
         day = date_fields[2];
 
-        if(new File(binary_path_name + "S" + year).exists()) { //there is data stored in AppData/Raoming...
+        if(new File(binary_path_name + (char)92 + "S" + year).exists()) { //there is data stored in AppData/Raoming...
             throw new Error("DA FINIRE costruttore AppCore! (mandare messaggio a Kim)");
         } else { //there is no stored data for the login season
             seasons_list = new MannusSeason[] {
