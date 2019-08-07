@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.Component;
+import java.awt.Component.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
@@ -39,7 +39,7 @@ public class MannusFrame extends JFrame implements WindowListener {
         });
 
         add(new JLabel("prova")); //sta roba non si vede perche' c'e' l'altra finestra
-        editor = new WindowIscritti(getGraphics(), app) {
+        editor = new WindowIscritti(getGraphics(), app){
             public int myGetWidth() {return (int)(getSize().getWidth() - (2d * (double)myGetX()));}
 
             public int myGetHeight() {return (int)(getSize().getHeight() - ((double)myGetY() + (double)myGetX()));}
